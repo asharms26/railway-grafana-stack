@@ -2,6 +2,9 @@ global:
   scrape_interval: 15s # Default scrape interval
 
 scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
   - job_name: 'permitguard-api'
     scrape_interval: 15s
     metrics_path: /metrics
@@ -9,7 +12,7 @@ scrape_configs:
       type: Bearer
       credentials: 186dca44ef618bd69eb96495311cb91f53c091e0772402bc71c6904d254d7ddf
     static_configs:
-      - targets: ['codechecker.railway.internal']
+      - targets: ['codechecker.railway.internal:8080']
         labels:
           service: permitguard-api
 
